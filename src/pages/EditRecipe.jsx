@@ -11,7 +11,7 @@ const{id}=useParams()
 
 useEffect(()=>{
     const getData=async()=>{
-    await axios.get(`http://localhost:4000/recipe/${id}`)
+    await axios.get(`${import.meta.env.VITE_API_URL}/recipe`)
     .then(response=>{
         let res=response.data
         setRecipeData({
@@ -34,7 +34,7 @@ const onHandleChange=(e)=>{
 const onHandleSubmit=async(e)=>{
     e.preventDefault()
     console.log(recipeData)
-    await axios.put(`http://localhost:4000/recipe/${id}`,recipeData,{
+    await axios.put(`${import.meta.env.VITE_API_URL}/recipe`,recipeData,{
         headers:{
             'Content-Type':'multipart/form-data',
             'authorization':'bearer ' +localStorage.getItem("token")
